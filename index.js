@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const nodemailer = require("nodemailer");
-require("dotenv")
+require("dotenv").config()
 const express = require("express")
 const app = express()
 const cors = require("cors")
@@ -10,10 +10,12 @@ app.use(cors({
     origin: '*'
 }));
 
-
+app.use(express.json())
+console.log(process.env.EMAIL_SENDER)
 
 const sendVisitingEmail = async (req , res)=>{
     console.log(req.body)
+
     let transporter = nodemailer.createTransport({
         service : 'gmail'  ,
         auth : {
