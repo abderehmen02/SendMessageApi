@@ -3,10 +3,17 @@ const nodemailer = require("nodemailer");
 require("dotenv")
 const express = require("express")
 const app = express()
+const cors = require("cors")
 // send me an email when someone visit Day After Day
 
-const sendVisitingEmail = async (req , res)=>{
+app.use(cors({
+    origin: '*'
+}));
 
+
+
+const sendVisitingEmail = async (req , res)=>{
+    console.log(req.body)
     let transporter = nodemailer.createTransport({
         service : 'gmail'  ,
         auth : {
@@ -17,7 +24,7 @@ const sendVisitingEmail = async (req , res)=>{
  await transporter.sendMail({
     from: process.env.EMAIL_SENDER,
     to: process.env.EMAIL_RECEIVER,
-    subject: 'visit day after day',
+    subject: req.body.subject,
     text:  ` durration : ${req.body.durration}`
 }, (err, info) => {
     if(info){
@@ -26,6 +33,16 @@ const sendVisitingEmail = async (req , res)=>{
     if(err)    console.log(err)
 });
 }
+
+
+
+app.post("/sendMessage" , sendVisitingEmail)
+
+
+
+
+
+
 const PORT = process.env.PORT || 2000
 
 
