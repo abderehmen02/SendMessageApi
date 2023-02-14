@@ -1,0 +1,14 @@
+{
+  "name": "sendEmailApp",
+  "version": "1.0.0",
+  "description": "an api for sending email when someone visit my website or my personal projects",
+  "main": "index.js",
+  "author": "abderrahmane",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.20"
+  }
+}
