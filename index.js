@@ -27,7 +27,7 @@ const sendVisitingEmail = async (req , res)=>{
     from: process.env.EMAIL_SENDER,
     to: process.env.EMAIL_RECEIVER,
     subject: req.body.subject,
-    text:  ` durration : ${req.body.durration}`
+    text:  ` durration : ${req.body.durration} , message : ${req.body.message}`
 }, (err, info) => {
     if(info){
         res.status(StatusCodes.OK)
